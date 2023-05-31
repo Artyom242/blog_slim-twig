@@ -1,0 +1,415 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&family=Playfair+Display&family=Ubuntu:wght@300&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,
+:active {
+    outline: none;
+}
+a:focus,
+a:active {
+    outline: none;
+}
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+input::-ms-clear {
+    display: none;
+}
+button {
+    cursor: pointer;
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+a,
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+ul li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+//-----------------------------------------------
+body {
+    font-family: "Playfair Display", sans-serif;
+    height: 100%;
+}
+
+//-----------scroll------------------------
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #5dfa99, #526bf8);
+}
+//-----------------------------------
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    ::-webkit-scrollbar {
+        width: 10px; /* ширина scrollbar */
+    }
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+        background-color: #f9f9fd; /* цвет дорожки */
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #f2bf93;
+        background-image: -webkit-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.25) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.25) 50%,
+            rgba(255, 255, 255, 0.25) 75%,
+            transparent 75%,
+            transparent
+        ); /* padding вокруг плашки */
+    }
+}
+
+[class*="__container"] {
+    max-width: 1092px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+[class*="__container2"] {
+    max-width: 900px;
+}
+[class*="__container3"] {
+    max-width: 930px;
+}
+._ibg {
+    position: relative;
+}
+
+a {
+    color: #626262;
+}
+//----------header-----------------------------------
+.header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    &__block {
+        display: flex;
+        height: 163px;
+        align-items: center;
+    }
+
+    &__icon {
+    }
+
+    &__menu {
+        flex: 1 1 auto;
+    }
+}
+.icon {
+    font-family: Inconsolata;
+    font-size: 30px;
+    line-height: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #000000;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu__block {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (max-width: 540.98px) {
+        flex-direction: column;
+    }
+}
+.link {
+    margin: 5px 0 5px 100px;
+    @media (max-width: 991.98px) {
+        margin: 5px 0 5px 50px;
+    }
+    @media (max-width: 635.98px) {
+        margin: 5px 0 5px 20px;
+    }
+    @media (max-width: 500.98px) {
+        margin: 5px 20px 5px 30px;
+    }
+    li {
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #626262;
+    }
+}
+
+//----------main-----------------------------------
+.main {
+    flex: 1 1 auto;
+    &__block_one {
+        margin: 162px auto 0;
+        max-width: 1062px;
+
+        @media (max-width: 540.98px) {
+            margin: 170px auto 0;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+        }
+    }
+    .link_dip {
+        margin: 32px 0px 28px 0px;
+    }
+    .dip {
+        margin: 100px 0px 32px 0px;
+    }
+    .photodiary {
+        font-family: Ubuntu;
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: #b4ad9e;
+    }
+
+    //----------cards---------------------------
+
+    &__block-text {
+    }
+    .text-one {
+        &__body {
+        }
+    }
+    .title {
+        font-size: 30px;
+        line-height: 1.2;
+        font-weight: 400;
+        color: #626262;
+        padding-bottom: 34px;
+    }
+    .text {
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        color: #626262;
+        padding-bottom: 20px;
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 106px 0 0px 0;
+
+        &__block {
+            //margin: 0 15px;
+            max-width: 420px;
+            padding: 0 30px 132px 30px;
+
+            @media (max-width: 840.98px) {
+                max-width: 600px;
+                padding: 0 15px 132 15px;
+            }
+            @media (max-width: 440.98px) {
+                max-width: 200px;
+                padding: 0 15px 125px 15px;
+            }
+            @media (max-width: 399.98px) {
+                max-width: 270px;
+                padding: 0 15px 125px 15px;
+            }
+        }
+
+        &__block-row {
+            max-height: 470px;
+            overflow: auto;
+
+            @media (max-width: 840.98px) {
+                max-height: 600px;
+            }
+            @media (max-width: 440.98px) {
+                max-height: 300px;
+            }
+        }
+    }
+    .block {
+        &__image {
+            img {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                object-fit: cover;
+            }
+        }
+    }
+
+    //----------email---------------------------
+
+    .block {
+        &__subscription {
+            background-color: #f0f0f0;
+        }
+    }
+    .subscription {
+        padding: 74px 15px;
+        text-align: center;
+        max-width: 388px;
+
+        &__email {
+            border-bottom: 1px solid #000;
+            padding: 10px 0;
+            display: flex;
+            input {
+                background-color: #f0f0f0;
+                width: 100%;
+            }
+        }
+    }
+    .email {
+        &__images {
+            display: flex;
+            flex: 1 1 auto;
+            justify-content: flex-end;
+
+            .img-link {
+            }
+        }
+    }
+
+    .title-anotherColor {
+        color: #333333;
+        padding-bottom: 78px;
+    }
+
+    //----------email---------------------------
+    .block {
+        &__LinkMore {
+        }
+    }
+    .LinkMore {
+        padding: 33px 15px 50px;
+        display: flex;
+        justify-content: center;
+
+        &__more {
+            max-width: 164px;
+        }
+    }
+
+    .title-more {
+        padding: 18px 29px;
+        font-size: 20px;
+        line-height: 24px;
+        border: 1px solid #000;
+        border-radius: 5px;
+    }
+}
+//----------footer-------------------------
+.footer {
+    background-color: #f0f0f0;
+}
+.column {
+    display: flex;
+    padding: 40px 80px 45px;
+    @media (max-width: 700.98px) {
+        padding: 40px 15px 45px;
+    }
+    @media (max-width: 470.98px) {
+        padding: 40px 15px 35px;
+    }
+}
+.column-one {
+}
+.us {
+    display: flex;
+    @media (max-width: 470.98px) {
+        display: block;
+    }
+}
+.text-color000 {
+    color: #000000;
+    padding-right: 17px;
+    @media (max-width: 470.98px) {
+        padding-bottom: 10px;
+    }
+}
+.column-two {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+}
+.textFollow {
+    padding-right: 3px;
+}
+.Follow {
+    display: flex;
+}
+.networks {
+    padding-left: 18px;
+}

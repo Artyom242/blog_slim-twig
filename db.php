@@ -15,4 +15,6 @@ $dbName = getenv('DB_NAME');
 $dbUsername = getenv('DB_USERNAME');
 $dbPassword = getenv('DB_PASSWORD');
 
-return new PDO ("$dbConn:host=$dbHost;dbname=$dbName","$dbUsername","$dbPassword");
+ORM::configure("$dbConn:host=$dbHost;dbname=$dbName");
+ORM::configure('username', "$dbUsername");
+ORM::configure('password', "$dbPassword");

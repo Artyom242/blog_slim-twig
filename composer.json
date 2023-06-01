@@ -3,6 +3,7 @@
         "symfony/dotenv": "^6.0",
         "twig/twig": "^3.6",
         "slim/slim": "4.*",
-        "slim/psr7": "^1.6"
+        "slim/psr7": "^1.6",
+        "j4mie/idiorm": "^1.5"
     }
 }

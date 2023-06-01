@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6812219a828859dee2e6d3ccdff07823",
+    "content-hash": "f1dcbd3e51296a1cea7f8c89bd2c95a8",
     "packages": [
         {
             "name": "fig/http-message-util",
@@ -61,6 +61,72 @@
                 "source": "https://github.com/php-fig/http-message-util/tree/1.1.5"
             },
             "time": "2020-11-24T22:02:12+00:00"
+        },
+        {
+            "name": "j4mie/idiorm",
+            "version": "v1.5.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/j4mie/idiorm.git",
+                "reference": "6da4e7ec8382ce0cb95543e08c0a1371b77bac8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/j4mie/idiorm/zipball/6da4e7ec8382ce0cb95543e08c0a1371b77bac8b",
+                "reference": "6da4e7ec8382ce0cb95543e08c0a1371b77bac8b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "ext-pdo_sqlite": "*",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "idiorm.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause",
+                "BSD-3-Clause",
+                "BSD-4-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jamie Matthews",
+                    "email": "jamie.matthews@gmail.com",
+                    "homepage": "http://j4mie.org",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Simon Holywell",
+                    "email": "treffynnon@php.net",
+                    "homepage": "http://simonholywell.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Durham Hale",
+                    "email": "me@durhamhale.com",
+                    "homepage": "http://durhamhale.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A lightweight nearly-zero-configuration object-relational mapper and fluent query builder for PHP5",
+            "homepage": "http://j4mie.github.com/idiormandparis",
+            "keywords": [
+                "idiorm",
+                "orm",
+                "query builder"
+            ],
+            "support": {
+                "issues": "https://github.com/j4mie/idiorm/issues",
+                "source": "https://github.com/j4mie/idiorm"
+            },
+            "time": "2022-07-18T03:49:49+00:00"
         },
         {
             "name": "nikic/fast-route",

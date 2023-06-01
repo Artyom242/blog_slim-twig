@@ -7,7 +7,6 @@ use Twig\Environment;
 
 require __DIR__ . '/vendor/autoload.php';
 
-
 $loader = new FilesystemLoader('templates');
 $view = new Environment($loader);
 
@@ -26,13 +25,13 @@ $app->get('/about', function (Request $request, Response $response, $args) use (
 });
 
 $app->get('/{url_key}', function (Request $request, Response $response, $args) use ($view) {
-    /** @var PDO $db */
     $db = require_once $_SERVER['DOCUMENT_ROOT'] . '/db.php';
-
+/*
     $posts = $db->prepare('select * from posts where id=:id');
     $posts->execute(['id' => $args['url_key']]);
-    $post = $posts->fetch(PDO::FETCH_ASSOC);
+    $post = $posts->fetch(PDO::FETCH_ASSOC);*/
 
+    $post = ORM::for_table('posts')->where('id', $args['url_key'])->find_one();
 
     $body = $view->render('post.twig', [ 'post' => $post ]);
     $response->getBody()->write($body);

@@ -12,20 +12,27 @@ $view = new Environment($loader);
 
 $app = AppFactory::create();
 
+//главная стр
 $app->get('/', function (Request $request, Response $response, $args) use ($view) {
-    $body = $view->render('index.twig');
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/db.php';
+    $postsOne = ORM::for_table('posts')->find_many();
+    $postsTwo = ORM::for_table('posts')->where_gt('id', 4)->find_many();
+
+    $body = $view->render('index.twig', ['posts' => $postsOne, 'postsTwo' => $postsTwo]);
     $response->getBody()->write($body);
     return $response;
 });
 
+//страница about
 $app->get('/about', function (Request $request, Response $response, $args) use ($view) {
     $body = $view->render('about.twig', [ 'name' => 'Art' ] );
     $response->getBody()->write($body);
     return $response;
 });
 
+//страница поста
 $app->get('/{url_key}', function (Request $request, Response $response, $args) use ($view) {
-    $db = require_once $_SERVER['DOCUMENT_ROOT'] . '/db.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/db.php';
 /*
     $posts = $db->prepare('select * from posts where id=:id');
     $posts->execute(['id' => $args['url_key']]);

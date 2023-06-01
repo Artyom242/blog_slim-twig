@@ -1,11 +1,6 @@
 <?php
 
-session_start();
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-
 use Symfony\Component\Dotenv\Dotenv;
-
 
 $dotenv = new Dotenv();
 $dotenv->usePutenv()->load(__DIR__ . '/.env');

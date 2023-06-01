@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -14,7 +16,7 @@ $app = AppFactory::create();
 
 //главная стр
 $app->get('/', function (Request $request, Response $response, $args) use ($view) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/db.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
     $postsOne = ORM::for_table('posts')->find_many();
     $postsTwo = ORM::for_table('posts')->where_gt('id', 4)->find_many();
 
@@ -32,7 +34,7 @@ $app->get('/about', function (Request $request, Response $response, $args) use (
 
 //страница поста
 $app->get('/{url_key}', function (Request $request, Response $response, $args) use ($view) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/db.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 /*
     $posts = $db->prepare('select * from posts where id=:id');
     $posts->execute(['id' => $args['url_key']]);

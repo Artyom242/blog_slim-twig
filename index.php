@@ -17,10 +17,11 @@ $app = AppFactory::create();
 //главная стр
 $app->get('/', function (Request $request, Response $response, $args) use ($view) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
-    $postsOne = ORM::for_table('posts')->find_many();
-    $postsTwo = ORM::for_table('posts')->where_gt('id', 4)->find_many();
 
-    $body = $view->render('index.twig', ['posts' => $postsOne, 'postsTwo' => $postsTwo]);
+    $postFirst = ORM::for_table('posts')->limit(4)->find_many();
+    $postSecond = ORM::for_table('posts')->limit(2)->offset(4)->find_many();
+
+    $body = $view->render('index.twig', ['postFirst' => $postFirst, 'postsSecond' => $postSecond ]);
     $response->getBody()->write($body);
     return $response;
 });

@@ -3,7 +3,7 @@
 {% block body %}
     <main class="main">
         <div class="main__block_one __container">
-            <img src="img/block_1/rettangolo_1_23.png" alt="">
+            <img src="../img/block_1/rettangolo_1_23.png" alt="">
         </div>
 
         <div class="main__block-text ">
@@ -39,16 +39,12 @@
         <div class="block__cards">
             <div class="cards __container2">
 
-                {% set countPost = 1 %}
+                {% for post in postFirst %}
 
-                {% for post in posts %}
-
-                    {% if countPost < 5 %}
                     {% include 'section/card.twig' %}
-                    {% set countPost = countPost + 1 %}
-                    {% endif %}
 
                 {% endfor %}
+
             </div>
         </div>
 
@@ -57,24 +53,18 @@
         <div class="block__cards">
             <div class="cards __container2">
 
-                {% set countPost = 1 %}
+                {% for post in postsSecond %}
 
-                {% for post in postsTwo %}
-
-                    {% if countPost < 3 %}
-                        {% include 'section/card.twig' %}
-                        {% set countPost = countPost + 1 %}
-                    {% endif %}
+                    {% include 'section/card.twig' %}
 
                 {% endfor %}
-
             </div>
         </div>
 
         <div class="block__LinkMore">
             <div class="LinkMore __container2">
                 <div class="LinkMore__more">
-                    <a href="#">
+                    <a href="/posts">
                         <h3 class="title title-more">
                             Load more
                         </h3>

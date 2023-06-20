@@ -1,0 +1,26 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+    <main class="main">
+        <div class="main__block_one __container" style="font-size: 20px">
+            <form action="/admin/create" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="title">Title: </label>
+                    <input style="border: black 1px solid" type="text" id="title" name="title">
+                </div>
+                <div>
+                    <label for="text">Text: </label>
+                    <textarea style="border: black 1px solid" name="text" id="text" cols="40" rows="5"></textarea>
+                </div>
+                <div>
+                    <label for="img">Image: </label>
+                    <input type="file" name="image" id="img">
+                </div>
+                <input style="padding: 10px 40px; border: black 1px solid" type="submit" value="Создать">
+            </form>
+            <div style="margin-top: 20px; font-size: 20px">
+                <a href="/admin/story">Смотреть</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}

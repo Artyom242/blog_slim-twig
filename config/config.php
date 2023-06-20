@@ -1,14 +1,10 @@
 <?php
-
-session_start();
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-
+require $_SERVER['DOCUMENT_ROOT']. '/vendor/autoload.php';
 use Symfony\Component\Dotenv\Dotenv;
 
-
 $dotenv = new Dotenv();
-$dotenv->usePutenv()->load(__DIR__ . '/.env');
+$dotenv->usePutenv()->load($_SERVER['DOCUMENT_ROOT'] . '/.env');
+
 $dbConn = getenv('DB_CONNECTION');
 $dbHost = getenv('DB_HOST');
 $dbName = getenv('DB_NAME');

@@ -250,9 +250,8 @@ a {
 }
 
 .main {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  margin: 0 auto;
+  max-width: 80ch;
 }
 
 .main__block_one {
@@ -328,7 +327,7 @@ a {
 @media (max-width: 840.98px) {
   .main .cards__block {
     max-width: 600px;
-    padding: 0 15px 132 15px;
+    padding: 0 15px 132px 15px;
   }
 }
 
@@ -435,6 +434,7 @@ a {
 }
 
 .footer {
+  margin-top: auto;
   background-color: #f0f0f0;
 }
 
@@ -504,4 +504,29 @@ a {
 
 .networks {
   padding-left: 18px;
+}
+
+
+/*----------tables-----*/
+
+table {
+  font-size: 14px;
+  border-collapse: collapse;
+  text-align: center;
+}
+th, td:first-child {
+  background: #AFCDE7;
+  color: white;
+  padding: 10px 20px;
+}
+th, td {
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: white;
+}
+td {
+  background: #D8E6F3;
+}
+th:first-child, td:first-child {
+  text-align: left;
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 require __DIR__ . '/vendor/autoload.php';
 
 use DI\ContainerBuilder;
@@ -9,9 +9,11 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
+use Slim\Middleware\MethodOverrideMiddleware;
 
-use Slim\App\Controller;
-use DI\Container;
+
+$_SESSION['login'] = 'login';
+$_SESSION['password'] = 123;
 
 
 //$loader = new FilesystemLoader('templates');
@@ -26,20 +28,36 @@ $view = $container->get(Environment::class);
 
 $app = AppFactory::create();
 
+
+// Add MethodOverride middleware
+$app->add(new MethodOverrideMiddleware());
+
 //главная стр
-$app->get('/', [Controller\Rout::class, 'getHome']);
+$app->get('/', [Blog\Slim\Routs\Routs::class, 'getHome']);
 
 //страница about
-$app->get('/about', [Controller\Rout::class, 'getAbout']);
+$app->get('/about', [Blog\Slim\Routs\Routs::class, 'getAbout']);
+
+$app->get('/posts',  [Blog\Slim\Routs\Routs::class, 'getPosts']);
+
+$app->get('/admin',  [Blog\Slim\Routs\Routs::class, 'admin']);
+
+$app->post('/login',  [Blog\Slim\Routs\Routs::class, 'login']);
+
+$app->map(['GET', 'POST'],'/admin/create',  [Blog\Slim\Routs\Routs::class, 'create']);
+
+$app->get('/admin/story',  [Blog\Slim\Routs\Routs::class, 'story']);
+
+$app->get('/admin/destroy/{url_key}',  [Blog\Slim\Routs\Routs::class, 'destroy']);
+
+$app->get('/admin/logout',  [Blog\Slim\Routs\Routs::class, 'logout']);
+
+$app->get('/admin/{url_key}/edit',  [Blog\Slim\Routs\Routs::class, 'edit']);
+
+$app->post('/admin/update/{url_key}',  [Blog\Slim\Routs\Routs::class, 'update']);
 
 //страница поста
-$app->get('/{url_key}', function (Request $request, Response $response, $args) use ($view) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+$app->get('/{url_key}',  [Blog\Slim\Routs\Routs::class, 'getPost']);
 
-    $post = ORM::for_table('posts')->where('id', $args['url_key'])->find_one();
-    $body = $view->render('post.twig', ['post' => $post]);
-    $response->getBody()->write($body);
-    return $response;
-});
-
+$app->addRoutingMiddleware();
 $app->run();

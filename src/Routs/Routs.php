@@ -155,16 +155,19 @@ class Routs
                     $post->$key = $value;
                 }
             }
-/*
+
             $uploadedFile = $uploadedFiles['image'];
-
-            //действия с файлом
-
             $filename = $uploadedFile->getClientFilename();
-            $directory = $_SERVER['DOCUMENT_ROOT'] . '/img/cards' . '/' . $filename;
-            $tmpFilePath = $uploadedFile->getStream()->getMetadata('uri');
-            move_uploaded_file($tmpFilePath, $directory);
-*/
+            var_dump($filename);
+
+            if ($filename) {
+                $directory = $_SERVER['DOCUMENT_ROOT'] . '/img/cards' . '/' . $filename;
+                $tmpFilePath = $uploadedFile->getStream()->getMetadata('uri');
+                move_uploaded_file($tmpFilePath, $directory);
+
+                $post->image = $filename;
+            }
+
             $post->save();
 
             header('location: /admin/story');

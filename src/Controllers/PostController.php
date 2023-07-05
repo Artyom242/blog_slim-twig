@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Slim\Routs;
+namespace Blog\Slim\Controllers;
 
 use ORM;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Twig\Environment;
 
 
-class Routs
+class PostController
 {
     private Environment $view;
 
@@ -17,72 +17,8 @@ class Routs
         $this->view = $view;
     }
 
-    public function getAbout(Request $request, Response $response, $args): Response
-    {
-        $body = $this->view->render('about.twig', ['name' => 'Art']);
-        $response->getBody()->write($body);
-        return $response;
-    }
 
-    public function getHome(Request $request, Response $response, $args): Response
-    {
-        $postsOne = ORM::for_table('posts')->limit(4)->find_many();
-        $postsTwo = ORM::for_table('posts')->offset(4)->limit(2)->find_many();
-
-        $body = $this->view->render('index.twig', ['postFirst' => $postsOne, 'postsSecond' => $postsTwo]);
-        $response->getBody()->write($body);
-        return $response;
-    }
-
-    public function getPost(Request $request, Response $response, $args): Response
-    {
-        $post = ORM::for_table('posts')->where('id', $args['url_key'])->find_one();
-        $body = $this->view->render('post.twig', ['post' => $post]);
-        $response->getBody()->write($body);
-        return $response;
-    }
-
-    public function getPosts(Request $request, Response $response, $args): Response
-    {
-        $posts = ORM::for_table('posts')->find_many();
-
-
-        $body = $this->view->render('posts.twig', ['posts' => $posts]);
-        $response->getBody()->write($body);
-        return $response;
-    }
-
-    public function admin(Request $request, Response $response, $args)
-    {
-        if ($_SESSION['admin'] == 'login') {
-            header('location: /admin/story');
-        } else {
-            $body = $this->view->render('admin/index.twig');
-            $response->getBody()->write($body);
-            return $response;
-        }
-    }
-
-    public function login(Request $request, Response $response, $args)
-    {
-        $login = $request->getParsedBody();
-
-        if (!empty($login['login']) && !empty($login['password'])) {
-            if ($login['login'] == $_SESSION['login'] && $login['password'] == $_SESSION['password']) {
-
-                $_SESSION['admin'] = 'login';
-                $body = $this->view->render('admin/addPost.twig');
-                $response->getBody()->write($body);
-                return $response;
-            }
-        }
-
-        $body = $this->view->render('admin/index.twig');
-        $response->getBody()->write($body);
-        return $response;
-    }
-
-    public function create(Request $request, Response $response, $args): Response
+    public function create(Request $request, Response $response, $args)
     {
 
         if ($_SESSION['admin'] == 'login') {
@@ -108,25 +44,24 @@ class Routs
                 $base->image = $filename;
                 $base->save();
 
+                header('location: /admin/store');
+            } else {
                 $body = $this->view->render('admin/addPost.twig');
                 $response->getBody()->write($body);
                 return $response;
             }
-            $body = $this->view->render('admin/addPost.twig');
+        } else {
+            $body = $this->view->render('admin/index.twig');
             $response->getBody()->write($body);
             return $response;
         }
-
-        $body = $this->view->render('admin/index.twig');
-        $response->getBody()->write($body);
-        return $response;
     }
 
-    public function story(Request $request, Response $response, $args): Response
+    public function store(Request $request, Response $response, $args): Response
     {
         $posts = ORM::for_table('posts')->find_many();
 
-        $body = $this->view->render('admin/story.twig', ['posts' => $posts]);
+        $body = $this->view->render('admin/store.twig', ['posts' => $posts]);
         $response->getBody()->write($body);
         return $response;
     }
@@ -170,7 +105,7 @@ class Routs
 
             $post->save();
 
-            header('location: /admin/story');
+            header('location: /admin/store');
         }
 
         header('location: /admin');
@@ -180,18 +115,8 @@ class Routs
     {
         $post = ORM::for_table('posts')->where('id', $args['url_key'])->find_one();
         $post->delete();
-        header('location: /admin/story');
+        header('location: /admin/store');
     }
 
-    public function logout(Request $request, Response $response, $args)
-    {
 
-        if ($_SESSION['admin'] == 'login') {
-
-            $_SESSION['admin'] = null;
-            header('location: /');
-        }
-
-        header('location: /');
-    }
 }
